@@ -1,5 +1,9 @@
+import 'dart:typed_data';
+
 import 'package:core_exam_two/utils/colors.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 import '../../../models/student_model.dart';
 import '../../../utils/global_variables.dart';

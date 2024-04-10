@@ -5,6 +5,7 @@ import 'package:core_exam_two/view/screens/detail%20screen/detail_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 import '../../../models/student_model.dart';
 
@@ -55,10 +56,19 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            CircleAvatar(
-                              radius: 50,
-                              backgroundImage:
-                                  FileImage(studentList[index].img!),
+                            CupertinoButton(
+                              onPressed: () async {
+                                final img = await studentList[index].img!.readAsBytes();
+                                final data = img.buffer.asUint8List();
+                                await ImageGallerySaver.saveImage(data, name: 'student img');
+
+                              },
+                              padding: EdgeInsets.zero,
+                              child: CircleAvatar(
+                                radius: 50,
+                                backgroundImage:
+                                    FileImage(studentList[index].img!),
+                              ),
                             ),
 
                             //info
