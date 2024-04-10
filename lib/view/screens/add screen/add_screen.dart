@@ -30,10 +30,6 @@ class _AddStudentDataState extends State<AddStudentData> {
       txtStandard =
           TextEditingController(text: '${widget.student.student_standard}');
       imgPath = widget.student.img;
-    } else {
-      txtName = TextEditingController();
-      txtGrid = TextEditingController();
-      txtStandard = TextEditingController();
     }
 
     return Scaffold(

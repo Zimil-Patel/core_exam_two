@@ -178,7 +178,9 @@ class _HomeScreenState extends State<HomeScreen> {
       onPressed: () {
         isForEditing = false;
         Student student = Student();
-
+        txtName = TextEditingController();
+        txtGrid = TextEditingController();
+        txtStandard = TextEditingController();
         Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) => AddStudentData(
             student: student,
