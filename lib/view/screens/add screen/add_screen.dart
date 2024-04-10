@@ -30,6 +30,10 @@ class _AddStudentDataState extends State<AddStudentData> {
       txtStandard =
           TextEditingController(text: '${widget.student.student_standard}');
       imgPath = widget.student.img;
+    } else {
+      txtName = TextEditingController();
+      txtGrid = TextEditingController();
+      txtStandard = TextEditingController();
     }
 
     return Scaffold(
@@ -103,11 +107,11 @@ class _AddStudentDataState extends State<AddStudentData> {
                   ImagePicker imagePicker = ImagePicker();
                   final XFile? img = await imagePicker.pickImage(source: ImageSource.gallery);
                   imgPath = File(img!.path);
-
+                  toggleState();
                   if(isForEditing){
                     widget.student.img = imgPath;
                   }
-                  toggleState();
+
 
 
                 }, child:  Text('Pick image', style: Theme.of(context).textTheme.titleMedium!.copyWith(
