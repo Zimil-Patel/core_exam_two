@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:core_exam_two/utils/colors.dart';
 import 'package:core_exam_two/utils/global_variables.dart';
 import 'package:core_exam_two/view/screens/add%20screen/add_screen.dart';
@@ -6,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../models/student_model.dart';
 
@@ -58,9 +61,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             CupertinoButton(
                               onPressed: () async {
-                                final img = await studentList[index].img!.readAsBytes();
-                                final data = img.buffer.asUint8List();
-                                await ImageGallerySaver.saveImage(data, name: 'student img');
+                                ImagePicker imagePicker = ImagePicker();
+                                final XFile? img = await imagePicker.pickImage(source: ImageSource.gallery);
+                                studentList[index].img = File(img!.path);
+                                toggleState();
 
                               },
                               padding: EdgeInsets.zero,
@@ -123,6 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     children: [
                                       IconButton(
                                           onPressed: () {
+
                                             isForEditing = true;
                                             Navigator.of(context)
                                                 .pushReplacement(
